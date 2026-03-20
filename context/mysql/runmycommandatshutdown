@@ -1,0 +1,27 @@
+#!/bin/sh
+# chkconfig: 2345 20 80
+# description: An example init script to run a command at shutdown
+
+# runmycommandatshutdown runs a command at shutdown. Very creative.
+
+LOCKFILE=/var/lock/subsys/
+start(){
+    # Touch our lock file so that stopping will work correctly
+    touch ${LOCKFILE}
+}
+
+stop(){
+# Remove our lock file
+rm ${LOCKFILE}
+# Run that command that we wanted to run
+mysqldump -h localhost -u root my-app > /docker-entrypoint-initdb.d/my-app.sql
+}
+
+case "$1" in
+    start) start;;
+    stop) stop;;
+    *)
+        echo $"Usage: $0 {start|stop}"
+        exit 1
+esac
+exit 0

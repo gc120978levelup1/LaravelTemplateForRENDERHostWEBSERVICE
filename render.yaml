@@ -1,0 +1,70 @@
+
+networks:
+  static-network:
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.0.0/16 # Define the subnet for the network
+
+services:
+  dbhost:
+    build: 
+      context: ./context/mysql
+    container_name: 'database-mysql-server'
+    restart: 'always'
+    environment:
+      MYSQL_ROOT_PASSWORD: ''
+      MYSQL_ROOT_HOST: '%'
+      MYSQL_DATABASE: '${DB_DATABASE}'
+      MYSQL_USER: '${DB_USERNAME}'
+      MYSQL_PASSWORD: '${DB_PASSWORD}'
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+    volumes:
+      - "./database_folder:/docker-entrypoint-initdb.d"
+    ports:
+      - '${DB_PORT}:3306'
+    networks:
+      static-network:
+        ipv4_address: 192.168.0.10 # Assign the static IP
+
+  apache.server:
+    build: 
+      context: ./context/php-apache
+    container_name: 'apache-server'
+    restart: 'always'
+    volumes:
+      - '.:/var/www/html'
+    ports:
+      - 80:80
+      - 443:443
+    networks:
+      static-network:
+        ipv4_address: 192.168.0.20 # Assign the static IP
+
+  phpmyadmin.garry.com:
+    build: 
+      context: ./context/phpmyadmin
+    container_name: 'phpmyadmin-garry-com'
+    restart: 'always'
+    ports:
+      - 8001:80
+    environment:
+      - PMA_HOST=192.168.0.10
+      - PMA_PORT=3306
+    networks:
+      static-network:
+        ipv4_address: 192.168.0.30 # Assign the static IP
+
+  redis:
+    image: 'redis:latest'
+    container_name: 'my-redis'
+    restart: 'always'
+    volumes:
+      - './redis-data:/data'
+    ports:
+      - 6379:6379
+    environment:
+      - REDIS_ARGS=--requirepass my_redis_password --appendonly yes
+    networks:
+      static-network:
+        ipv4_address: 192.168.0.40 # Assign the static IP
