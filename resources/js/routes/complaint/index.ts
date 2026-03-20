@@ -124,7 +124,7 @@ post.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
  * @see app/Http/Controllers/ComplaintController.php:75
  * @route '/complaint/{complaint}/edit'
  */
-export const edit = (args: { complaint: string | number | { id: string | number } } | [complaint: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+export const edit = (args: { complaint: number | { id: number } } | [complaint: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: edit.url(args, options),
     method: 'get',
 })
@@ -139,7 +139,7 @@ edit.definition = {
  * @see app/Http/Controllers/ComplaintController.php:75
  * @route '/complaint/{complaint}/edit'
  */
-edit.url = (args: { complaint: string | number | { id: string | number } } | [complaint: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions) => {
+edit.url = (args: { complaint: number | { id: number } } | [complaint: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { complaint: args }
     }
@@ -172,7 +172,7 @@ edit.url = (args: { complaint: string | number | { id: string | number } } | [co
  * @see app/Http/Controllers/ComplaintController.php:75
  * @route '/complaint/{complaint}/edit'
  */
-edit.get = (args: { complaint: string | number | { id: string | number } } | [complaint: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+edit.get = (args: { complaint: number | { id: number } } | [complaint: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: edit.url(args, options),
     method: 'get',
 })
@@ -181,7 +181,7 @@ edit.get = (args: { complaint: string | number | { id: string | number } } | [co
  * @see app/Http/Controllers/ComplaintController.php:75
  * @route '/complaint/{complaint}/edit'
  */
-edit.head = (args: { complaint: string | number | { id: string | number } } | [complaint: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+edit.head = (args: { complaint: number | { id: number } } | [complaint: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: edit.url(args, options),
     method: 'head',
 })
@@ -191,7 +191,7 @@ edit.head = (args: { complaint: string | number | { id: string | number } } | [c
  * @see app/Http/Controllers/ComplaintController.php:86
  * @route '/complaint/{complaint}/update'
  */
-export const update = (args: { complaint: string | number | { id: string | number } } | [complaint: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+export const update = (args: { complaint: number | { id: number } } | [complaint: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: update.url(args, options),
     method: 'post',
 })
@@ -206,7 +206,7 @@ update.definition = {
  * @see app/Http/Controllers/ComplaintController.php:86
  * @route '/complaint/{complaint}/update'
  */
-update.url = (args: { complaint: string | number | { id: string | number } } | [complaint: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions) => {
+update.url = (args: { complaint: number | { id: number } } | [complaint: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { complaint: args }
     }
@@ -239,7 +239,7 @@ update.url = (args: { complaint: string | number | { id: string | number } } | [
  * @see app/Http/Controllers/ComplaintController.php:86
  * @route '/complaint/{complaint}/update'
  */
-update.post = (args: { complaint: string | number | { id: string | number } } | [complaint: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+update.post = (args: { complaint: number | { id: number } } | [complaint: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: update.url(args, options),
     method: 'post',
 })
@@ -249,7 +249,7 @@ update.post = (args: { complaint: string | number | { id: string | number } } | 
  * @see app/Http/Controllers/ComplaintController.php:64
  * @route '/complaint/{complaint}/show'
  */
-export const show = (args: { complaint: string | number | { id: string | number } } | [complaint: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+export const show = (args: { complaint: number | { id: number } } | [complaint: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: show.url(args, options),
     method: 'get',
 })
@@ -264,7 +264,7 @@ show.definition = {
  * @see app/Http/Controllers/ComplaintController.php:64
  * @route '/complaint/{complaint}/show'
  */
-show.url = (args: { complaint: string | number | { id: string | number } } | [complaint: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions) => {
+show.url = (args: { complaint: number | { id: number } } | [complaint: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { complaint: args }
     }
@@ -297,7 +297,7 @@ show.url = (args: { complaint: string | number | { id: string | number } } | [co
  * @see app/Http/Controllers/ComplaintController.php:64
  * @route '/complaint/{complaint}/show'
  */
-show.get = (args: { complaint: string | number | { id: string | number } } | [complaint: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+show.get = (args: { complaint: number | { id: number } } | [complaint: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: show.url(args, options),
     method: 'get',
 })
@@ -306,7 +306,7 @@ show.get = (args: { complaint: string | number | { id: string | number } } | [co
  * @see app/Http/Controllers/ComplaintController.php:64
  * @route '/complaint/{complaint}/show'
  */
-show.head = (args: { complaint: string | number | { id: string | number } } | [complaint: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+show.head = (args: { complaint: number | { id: number } } | [complaint: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: show.url(args, options),
     method: 'head',
 })
