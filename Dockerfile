@@ -26,8 +26,6 @@ WORKDIR /var/www/html
 RUN composer install
 RUN npm install
 RUN npm run build
-RUN composer require league/flysystem-aws-s3-v3 "^3.0" --with-all-dependencies
-RUN composer require laravel/wayfinder
 RUN php artisan key:generate
 RUN php artisan storage:link
 RUN php artisan migrate --force
