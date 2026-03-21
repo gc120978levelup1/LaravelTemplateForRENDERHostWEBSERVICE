@@ -23,6 +23,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # Install and enable database communication
 RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
 
+# -----------------------------------------------------------------------------------------------------------
 # Copy the application code
 # Copy all the web app code to the linux Apache html folder
 COPY . /var/www/html
