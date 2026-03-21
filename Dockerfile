@@ -1,4 +1,6 @@
 FROM php:8.4-apache
+
+# Updating of application list
 RUN apt update
 RUN apt-get update -y
 
@@ -17,8 +19,11 @@ RUN docker-php-ext-install pdo_mysql pdo_pgsql zip
 # Install composer for Laravel (back end)
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
+# Install and enable database communication
+RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
+
 # Copy the application code
-# Copy all the code to the linux Apache html folder
+# Copy all the web app code to the linux Apache html folder
 COPY . /var/www/html
 
 # Set the working directory of Apache Webserver
@@ -33,18 +38,16 @@ RUN npm run build
 RUN php artisan storage:link
 RUN php artisan migrate --force
 
-# install and enable database communication
-RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
-
 # copy apache settings for Laravel Hosting
 COPY 000-default.conf /etc/apache2/sites-enabled/
 
-# Enable Apache modules
+# uncomment during production
+RUN echo "Listen 0.0.0.0:80" >> /etc/apache2/apache2.conf
+
+# Enable Apache Web Service
 RUN a2enmod rewrite
 RUN apachectl restart
 RUN chown -R root:root /var/www/html
 RUN chmod -R 777 /var/www/html
 
-# uncomment during production
-RUN echo "Listen 0.0.0.0:80" >> /etc/apache2/apache2.conf
 EXPOSE 80
